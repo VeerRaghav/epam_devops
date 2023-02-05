@@ -1,0 +1,3 @@
+games :x: 12: 100: games:/usr/games: /sbin/nologin
+ec2-user :x: 1000: 1000: Cloud User: /home/ec2-user:/bin/bash
+VeerRaghav :x: 1001: 1001:: /home/VeerRaghav: /bin/bash
