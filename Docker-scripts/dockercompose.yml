@@ -1,0 +1,8 @@
+services:
+  my-service:
+    image: cont3
+    volumes:
+      - my-volume:/home/ubuntu/Work2/mydata
+volumes:
+  my-volume:
+    driver: local
