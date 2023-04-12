@@ -1,0 +1,71 @@
+Last login: Wed Apr 12 07:25:02 on console
+rvvssaibabuthotakura@Rsr ~ % aws configure
+AWS Access Key ID [****************Q4W5]: 
+AWS Secret Access Key [****************kdQW]: 
+Default region name [us-east-1]: 
+Default output format [json]: 
+rvvssaibabuthotakura@Rsr ~ % aws dynamodb create-table \
+    --table-name Stud \ 
+    --attribute-definitions \
+        AttributeName=Reg_no,AttributeType=N \
+        AttributeName=Name,AttributeType=S \
+    --key-schema \
+        AttributeName=Reg_no,KeyType=HASH \
+        AttributeName=Name,KeyType=RANGE \
+    --provisioned-throughput \
+        ReadCapacityUnits=5,WriteCapacityUnits=5 \
+    --table-class STANDARD
+
+{
+    "TableDescription": {
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "Name",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "Reg_no",
+                "AttributeType": "N"
+            }
+        ],
+        "TableName": "Stud",
+        "KeySchema": [
+            {
+                "AttributeName": "Reg_no",
+                "KeyType": "HASH"
+            },
+            {
+                "AttributeName": "Name",
+                "KeyType": "RANGE"
+            }
+        ],
+        "TableStatus": "CREATING",
+rvvssaibabuthotakura@Rsr ~ % 
+rvvssaibabuthotakura@Rsr ~ % aws dynamodb execute-statement --statement "INSERT INTO Stud  \ 
+                VALUE  \
+                {'Reg_no':'11914558','Name':'Sai', 'CGPA':'8.5' }"             
+
+An error occurred (ValidationException) when calling the ExecuteStatement operation: Key attribute's data type should match its data type in table's schema: Key Reg_no
+rvvssaibabuthotakura@Rsr ~ % aws dynamodb execute-statement --statement "INSERT INTO Stud  \
+                VALUE  \
+                {'Reg_no':11914558,'Name':'Sai', 'CGPA':'8.5' }" 
+{
+    "Items": []
+}
+rvvssaibabuthotakura@Rsr ~ % aws dynamodb execute-statement --statement "SELECT * FROM Stud "                                                   
+{
+    "Items": [
+        {
+            "CGPA": {
+                "S": "8.5"
+            },
+            "Reg_no": {
+                "N": "11914558"
+            },
+            "Name": {
+                "S": "Sai"
+            }
+        }
+    ]
+}
+rvvssaibabuthotakura@Rsr ~ % 
