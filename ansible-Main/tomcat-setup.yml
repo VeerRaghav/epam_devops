@@ -1,0 +1,5 @@
+- name: Tomcat deployment playbook
+  hosts: default
+  remote_user: ubuntu
+  roles:
+    - tomcat
