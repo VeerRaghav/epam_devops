@@ -1,0 +1,8 @@
+--- # My titile for variables
+- hosts: default
+  connection: ssh
+  vars:
+    pkgname: nginx
+  tasks:
+    - name: install Httpd server on linux
+      action: apt name=' {{pkgname}}' state=present
