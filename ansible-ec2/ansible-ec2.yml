@@ -1,0 +1,27 @@
+---
+- name: provisioning ec2 instances using ansible
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    instance_type: t2.micro
+    ami_id: ami-007855ac798b5175e
+    region: us-east-1
+    key_name: ansible-remote
+    security_group_id: default
+    assign_public_ip: yes
+  tasks:
+    - name: start an instance with a public IP address
+      amazon.aws.ec2_instance:
+        name: "ans-pro"
+        key_name: '{{key_name}}'
+        vpc_subnet_id: subnet-06c2fa1fd4ef2c35f
+        instance_type: '{{instance_type}}'
+        security_group: default
+        network:
+          assign_public_ip: true
+        image_id: '{{ami_id}}'
+        tags:
+          Environment: Testing
+
+    

@@ -1,0 +1,9 @@
+rvvssaibabuthotakura@Rsr ansible-ec2 % ansible-playbook ansible-ec2.yml
+
+PLAY [provisioning ec2 instances using ansible] ********************************
+
+TASK [start an instance with a public IP address] ******************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
