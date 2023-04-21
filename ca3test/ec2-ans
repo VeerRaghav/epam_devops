@@ -1,0 +1,20 @@
+---
+- name: creating ec2 instances for ca3
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  vars:
+    ami: ami-069aabeee6f53e7bf
+    name: rvvs
+  tasks:
+    - amazon.aws.ec2_instance:
+        name: '{{name}}'
+        key_name: ansible-remote
+        vpc_subnet_id: subnet-06c2fa1fd4ef2c35f
+        instance_type: t2.micro
+        security_group: default
+        network:
+            assign_public_ip: true
+        image_id: '{{ami}}'
+        tags:
+            Environment: Testing
